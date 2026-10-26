@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 98%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 248 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 220 20% 20%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 250 84% 95%;
+    --accent-foreground: 248 90% 55%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 248 90% 66%;
+    --radius: 0.85rem;
+  }
+
+  .dark {
+    --background: 225 25% 7%;
+    --foreground: 210 40% 98%;
+    --card: 224 24% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 24% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 248 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 224 20% 15%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 224 20% 14%;
+    --muted-foreground: 217 19% 65%;
+    --accent: 248 90% 66%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 224 20% 18%;
+    --input: 224 20% 18%;
+    --ring: 248 90% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Glassmorphism & SaaS Accents */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-indigo-500 to-cyan-400;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.18) 0%, rgba(139, 92, 246, 0.08) 35%, transparent 70%);
+}
+
+.dark .hero-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.12) 40%, transparent 70%);
+}
