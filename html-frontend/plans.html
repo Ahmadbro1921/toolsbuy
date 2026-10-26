@@ -45,94 +45,161 @@
     </div>
   </header>
 
-  <!-- Plans Header -->
-  <section style="padding: 60px 0 30px; text-align: center;">
-    <div class="container">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        <span>Transparent PKR Pricing · Zero Hidden Setup Fees</span>
+  <!-- User's Choose Your Plan Section -->
+  <section class="container" style="padding: 70px 20px 40px;">
+    <div style="margin-bottom: 48px; text-align: center;">
+      <h2 style="font-size: 44px; font-weight: 800; color: var(--text-main); margin-bottom: 12px;">Choose your plan</h2>
+      <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">7 Days free trial. No credit card required.</p>
+      
+      <!-- Switch -->
+      <div style="display: flex; justify-content: center; align-items: center; user-select: none;">
+        <label id="monthlyLabel" style="font-size: 18px; font-weight: 700; color: var(--text-main); margin-right: 16px; cursor: pointer;">Bill Monthly</label>
+        
+        <input type="checkbox" id="billingToggle" style="width: 46px; height: 24px; cursor: pointer; accent-color: #6366f1;">
+        
+        <label id="yearlyLabel" style="font-size: 18px; font-weight: 500; color: var(--text-muted); margin-left: 16px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <span>Bill Yearly</span>
+          <span style="font-size: 11px; font-weight: 800; background: rgba(99, 102, 241, 0.15); color: #818cf8; padding: 2px 8px; border-radius: 9999px;">Save 20%</span>
+        </label>
       </div>
-      <h1 class="hero-title" style="font-size: 44px; margin-bottom: 14px;">
-        Choose Your Tools Package
-      </h1>
-      <p class="hero-subtitle" style="margin-bottom: 0;">
-        All packages include 30 days unlimited access, 1-click cloud launch, and 24/7 WhatsApp verification.
-      </p>
+      <!-- Switch End -->
+    </div>
+
+    <!-- Grid -->
+    <div class="packages-grid">
+      <!-- 1. Free Plan -->
+      <div class="package-card">
+        <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">Free</h3>
+        <div style="display: flex; align-items: baseline; margin-bottom: 24px;">
+          <span style="font-size: 48px; font-weight: 800; color: var(--text-main); margin-right: 8px;">$0</span>
+          <span style="font-size: 16px; color: var(--text-muted);">/ month</span>
+        </div>
+
+        <!-- List -->
+        <ul class="package-features" style="margin-bottom: 40px;">
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>2 auto tracking</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>7 Day transaction clearing</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>24/7 Customer support</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>All widget access</span>
+          </li>
+        </ul>
+
+        <a href="checkout.html?pkg=pkg-basic" class="btn btn-primary" style="background: #6366f1; border-color: #6366f1; width: 100%; border-radius: 9999px;">Purchase Plan</a>
+      </div>
+
+      <!-- 2. Advanced Plan (Most Popular) -->
+      <div class="package-card popular" style="border-color: #6366f1; padding-top: 0; overflow: hidden;">
+        <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); margin: 0 -32px 24px; padding: 12px; text-align: center; color: white; font-size: 11px; font-weight: 900; letter-spacing: 1.5px;">
+          MOST POPULAR
+        </div>
+        <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">Advanced</h3>
+        <div style="display: flex; align-items: baseline; margin-bottom: 24px;">
+          <span style="font-size: 48px; font-weight: 800; color: #818cf8; margin-right: 8px;" id="advPrice">$150</span>
+          <span style="font-size: 16px; color: var(--text-muted);">/ month</span>
+        </div>
+
+        <!-- List -->
+        <ul class="package-features" style="margin-bottom: 40px;">
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>AI Advisor</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Unlimited auto tracking</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>1 Day transaction clearing</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Priority customer support</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>All Widget Access</span>
+          </li>
+        </ul>
+
+        <a href="checkout.html?pkg=pkg-standard" class="btn btn-primary" style="background: #6366f1; border-color: #6366f1; width: 100%; border-radius: 9999px; box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);">Purchase Plan</a>
+      </div>
+
+      <!-- 3. Team Plan -->
+      <div class="package-card">
+        <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">Team</h3>
+        <div style="display: flex; align-items: baseline; margin-bottom: 24px;">
+          <span style="font-size: 48px; font-weight: 800; color: var(--text-main); margin-right: 8px;" id="teamPrice">$180</span>
+          <span style="font-size: 16px; color: var(--text-muted);">/ month</span>
+        </div>
+
+        <!-- List -->
+        <ul class="package-features" style="margin-bottom: 40px;">
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>AI Advisor</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Unlimited auto tracking</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>1 Day transaction clearing</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Priority customer support</span>
+          </li>
+          <li>
+            <svg style="color: #6366f1;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 14.7875L13.0959 17.8834C13.3399 18.1274 13.7353 18.1275 13.9794 17.8838L20.625 11.25M15 27.5C8.09644 27.5 2.5 21.9036 2.5 15C2.5 8.09644 8.09644 2.5 15 2.5C21.9036 2.5 27.5 8.09644 27.5 15C27.5 21.9036 21.9036 27.5 15 27.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>All Widget Access</span>
+          </li>
+        </ul>
+
+        <a href="checkout.html?pkg=pkg-premium" class="btn btn-primary" style="background: #6366f1; border-color: #6366f1; width: 100%; border-radius: 9999px;">Purchase Plan</a>
+      </div>
     </div>
   </section>
-
-  <!-- 1. Pre-Made Bundles Section -->
-  <section class="container" style="padding-bottom: 50px;">
-    <div class="packages-grid">
-      <!-- Basic Bundle -->
-      <div class="package-card">
-        <div>
-          <div class="package-header">
-            <h3>Basic Bundle</h3>
-            <p>The essential package for Amazon beginners and creators.</p>
-          </div>
-          <div class="package-price">
-            <span class="price-currency">PKR</span>
-            <span class="price-val">3,500</span>
-            <span class="price-period">/ month</span>
-            <div class="price-sub">Zero hidden charges · 30 Days Full Validity</div>
-          </div>
-          <ul class="package-features">
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Helium 10 Diamond (Cerebro + Black Box)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Helium 10 Freedom Ticket Course</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> ChatGPT Plus (GPT-4o & Canvas)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Canva Pro Graphic Suite</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Netflix 4K Streaming</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 1-Click Launch Station Access</li>
-          </ul>
-        </div>
-        <a href="checkout.html?pkg=pkg-basic" class="btn btn-outline" style="width: 100%;">Order Basic (PKR 3,500)</a>
-      </div>
-
-      <!-- Standard Bundle (Popular) -->
-      <div class="package-card popular">
-        <div class="popular-ribbon">🔥 Most Popular Choice</div>
-        <div>
-          <div class="package-header">
-            <h3>Standard Bundle</h3>
-            <p>Our top-selling pack for Amazon FBA sellers, copywriters & agencies.</p>
-          </div>
-          <div class="package-price">
-            <span class="price-currency">PKR</span>
-            <span class="price-val">4,000</span>
-            <span class="price-period">/ month</span>
-            <div class="price-sub">Best Value for Growing Businesses</div>
-          </div>
-          <ul class="package-features">
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Helium 10 Diamond (Full Suite)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Jungle Scout (Opportunity Finder + Sales)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> ChatGPT Plus (GPT-4o & Canvas)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Claude 3.5 Sonnet (Artifacts & Coding)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Canva Pro + Netflix 4K + Prime Video</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 24/7 Priority WhatsApp Support</li>
-          </ul>
-        </div>
-        <a href="checkout.html?pkg=pkg-standard" class="btn btn-primary" style="width: 100%;">Order Standard (PKR 4,000)</a>
-      </div>
-
-      <!-- Premium Bundle -->
-      <div class="package-card">
-        <div>
-          <div class="package-header">
-            <h3>Premium Bundle</h3>
-            <p>The complete power-suite with everything included.</p>
-          </div>
-          <div class="package-price">
-            <span class="price-currency">PKR</span>
-            <span class="price-val">5,000</span>
-            <span class="price-period">/ month</span>
-            <div class="price-sub">Amazon, Top AI Models, SEO & Design</div>
-          </div>
-          <ul class="package-features">
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Helium 10 + Keepa Pro + Jungle Scout</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> ChatGPT Plus + Claude 3.5 + Midjourney v6</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Semrush Guru (Keyword Magic + Backlinks)</li>
-            <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Coursera Plus Courses + Canva Pro</li>
             <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Netflix 4K & Amazon Prime Video</li>
             <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 24-Hour Prorated Replacement Guarantee</li>
           </ul>
