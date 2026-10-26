@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Operations Desk - ToolsBuy</title>
+  <meta name="description" content="Manage orders, verify manual payments, activate 30-day subscriptions, and configure packages.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2310a37f'/><text x='50%' y='65%' font-size='50' font-weight='900' fill='white' text-anchor='middle'>TB</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>Tools<span style="color: var(--accent-amber);">Admin</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Site Home</a></li>
+          <li><a href="plans.html" class="nav-link">Packages</a></li>
+          <li><a href="dashboard.html" class="nav-link">User View</a></li>
+          <li><a href="admin.html" class="nav-link active">Admin Desk</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="status-badge status-verified">Lead Administrator</span>
+        <a href="dashboard.html" class="btn btn-outline btn-sm">Return to User Mode</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Desk Container -->
+  <div class="container" style="padding: 40px 20px 80px;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px;">
+      <div>
+        <span class="section-tag" style="color: var(--accent-amber);">Privileged Access Desk</span>
+        <h1 style="font-size: 30px; font-weight: 800;">Administration & Verification Desk</h1>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 2px;">
+          Verify incoming manual payments, activate subscriptions, manage bundles, and reply to customer inquiries.
+        </p>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-sm" onclick="alert('All system sessions synced with Cloud Gateway.')">
+        🔄 Refresh Cloud Tokens
+      </button>
+    </div>
+
+    <!-- 1. KPI Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 40px;">
+      <div class="stat-card" style="text-align: left; padding: 22px;">
+        <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #34d399;">Total Revenue</span>
+        <div class="stat-number highlight" style="font-size: 26px; margin-top: 6px;" id="kpiRevenue">PKR 0</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Verified Manual Payments</div>
+      </div>
+
+      <div class="stat-card" style="text-align: left; padding: 22px; border-color: rgba(245, 158, 11, 0.4);">
+        <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #fbbf24;">Pending Verification</span>
+        <div class="stat-number" style="font-size: 26px; margin-top: 6px; color: #fbbf24;" id="kpiPending">0</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Needs TID Confirmation</div>
+      </div>
+
+      <div class="stat-card" style="text-align: left; padding: 22px;">
+        <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-muted);">Active Subscriptions</span>
+        <div class="stat-number" style="font-size: 26px; margin-top: 6px;" id="kpiActiveSubs">1</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">1-Click Launch Enabled</div>
+      </div>
+
+      <div class="stat-card" style="text-align: left; padding: 22px;">
+        <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #38bdf8;">Open Tickets</span>
+        <div class="stat-number" style="font-size: 26px; margin-top: 6px; color: #38bdf8;" id="kpiTickets">0</div>
+        <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Customer Help Inquiries</div>
+      </div>
+    </div>
+
+    <!-- 2. Orders & Manual Payment Verification Desk -->
+    <div class="checkout-card" style="margin-bottom: 40px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 800;">Orders & Payment Approvals</h2>
+          <p style="font-size: 12.5px; color: var(--text-muted);">
+            Check Transaction IDs (TID). Clicking <strong>Approve & Activate</strong> immediately grants a 30-day subscription to the customer.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-outline btn-sm filter-btn active" data-filter="all">All</button>
+          <button class="btn btn-outline btn-sm filter-btn" data-filter="pending">Pending Only</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Order / Date</th>
+              <th>Customer</th>
+              <th>Package</th>
+              <th>Amount</th>
+              <th>Gateway & TID</th>
+              <th>Status</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrdersTbody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. Packages Manager & Support Tickets -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <!-- Packages Manager -->
+      <div class="checkout-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <h3 style="font-size: 16px; font-weight: 800;">Package Pricing & Bundles</h3>
+          <button class="btn btn-outline btn-sm" onclick="alert('Package editor opened.')">+ Add Package</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Package Name</th>
+                <th>Price (PKR)</th>
+                <th>Tools</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="adminPackagesTbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Support Tickets Desk -->
+      <div class="checkout-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <h3 style="font-size: 16px; font-weight: 800;">Customer Support Tickets</h3>
+          <span style="font-size: 11px; color: var(--text-dim);">Live Inquiries</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Ticket #</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Quick Reply</th>
+              </tr>
+            </thead>
+            <tbody id="adminTicketsTbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>ToolsBuy Centralized Administration Desk</div>
+      <div>Logged in with Root Security Permissions</div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const ordersTbody = document.getElementById("adminOrdersTbody");
+      const pkgsTbody = document.getElementById("adminPackagesTbody");
+      const ticketsTbody = document.getElementById("adminTicketsTbody");
+
+      let currentFilter = "all";
+
+      function renderDashboard() {
+        const orders = DB.getOrders();
+        const pkgs = DB.getPackages();
+        const tickets = DB.getTickets();
+
+        // 1. KPI updates
+        const verifiedOrders = orders.filter(o => o.status === "verified");
+        const pendingOrders = orders.filter(o => o.status === "pending");
+        const totalRev = verifiedOrders.reduce((sum, o) => sum + (o.amount || 0), 0);
+
+        document.getElementById("kpiRevenue").innerText = `PKR ${totalRev.toLocaleString()}`;
+        document.getElementById("kpiPending").innerText = pendingOrders.length;
+        document.getElementById("kpiTickets").innerText = tickets.filter(t => t.status === "Open").length;
+
+        // 2. Render Orders
+        const filtered = currentFilter === "pending" ? pendingOrders : orders;
+        ordersTbody.innerHTML = filtered.length === 0 ? `
+          <tr><td colspan="7" style="text-align: center; color: var(--text-dim); padding: 24px;">No orders found.</td></tr>
+        ` : filtered.map(ord => {
+          const cleanPhone = (ord.phone || "").replace(/[^0-9]/g, "");
+          const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hello ${ord.name}! Regarding your ToolsBuy Order #${ord.orderNumber}...`)}`;
+
+          return `
+            <tr>
+              <td>
+                <div style="font-family: var(--font-mono); font-weight: 700;">${ord.orderNumber}</div>
+                <div style="font-size: 11px; color: var(--text-dim);">${ord.date}</div>
+              </td>
+              <td>
+                <div style="font-weight: 700;">${ord.name}</div>
+                <div style="font-size: 11px; color: #34d399;">
+                  <a href="${waUrl}" target="_blank" style="color: #34d399; text-decoration: underline;">${ord.phone} 💬</a>
+                </div>
+              </td>
+              <td><strong>${ord.packageName}</strong></td>
+              <td><strong>PKR ${ord.amount.toLocaleString()}</strong></td>
+              <td>
+                <div style="font-size: 11px; font-weight: 700; color: var(--primary);">${ord.method}</div>
+                <div style="font-family: var(--font-mono); font-size: 12px; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; display: inline-block;">
+                  ${ord.tid}
+                </div>
+              </td>
+              <td>
+                <span class="status-badge ${ord.status === 'verified' ? 'status-verified' : ord.status === 'rejected' ? 'status-rejected' : 'status-pending'}">
+                  ${ord.status.toUpperCase()}
+                </span>
+              </td>
+              <td style="text-align: right;">
+                ${ord.status === 'pending' ? `
+                  <button type="button" class="btn btn-primary btn-sm" onclick="approveOrder('${ord.id}')">Approve & Activate</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="color: var(--accent-rose); border-color: rgba(244,63,94,0.3);" onclick="rejectOrder('${ord.id}')">Reject</button>
+                ` : `
+                  <span style="font-size: 11px; color: var(--text-dim);">Processed</span>
+                `}
+              </td>
+            </tr>
+          `;
+        }).join("");
+
+        // 3. Render Packages
+        pkgsTbody.innerHTML = pkgs.map(p => `
+          <tr>
+            <td><strong>${p.name}</strong> <span style="font-size: 10px; color: var(--primary);">(${p.badge})</span></td>
+            <td><strong>PKR ${p.price.toLocaleString()}</strong></td>
+            <td><span style="font-size: 11px; color: var(--text-muted);">${p.tools.length} Tools</span></td>
+            <td><span class="status-badge status-verified">Live</span></td>
+          </tr>
+        `).join("");
+
+        // 4. Render Tickets
+        ticketsTbody.innerHTML = tickets.map(t => `
+          <tr>
+            <td style="font-family: var(--font-mono); font-weight: 700; color: var(--primary);">${t.number}</td>
+            <td><div style="font-weight: 600; font-size: 12px;">${t.subject}</div></td>
+            <td><span class="status-badge ${t.status === 'Resolved' ? 'status-verified' : 'status-pending'}">${t.status}</span></td>
+            <td>
+              <button type="button" class="btn btn-outline btn-sm" onclick="replyTicketPrompt('${t.id}')">Reply</button>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      // Actions
+      window.approveOrder = function(orderId) {
+        if (!confirm("Approve this manual payment? This will activate a 30-day subscription for the customer.")) return;
+        const orders = DB.getOrders();
+        const o = orders.find(x => x.id === orderId);
+        if (o) {
+          o.status = "verified";
+          DB.saveOrders(orders);
+
+          // Update active subscription
+          const sub = DB.getSubscription();
+          sub.active = true;
+          sub.packageName = o.packageName;
+          sub.expiresInDays = 30;
+          DB.saveSubscription(sub);
+
+          alert(`Order #${o.orderNumber} approved and subscription activated!`);
+          renderDashboard();
+        }
+      };
+
+      window.rejectOrder = function(orderId) {
+        const reason = prompt("Enter rejection reason (e.g. Invalid TID, Payment not credited):");
+        if (!reason) return;
+        const orders = DB.getOrders();
+        const o = orders.find(x => x.id === orderId);
+        if (o) {
+          o.status = "rejected";
+          DB.saveOrders(orders);
+          alert(`Order #${o.orderNumber} rejected.`);
+          renderDashboard();
+        }
+      };
+
+      window.replyTicketPrompt = function(ticketId) {
+        const reply = prompt("Enter support reply message to customer:");
+        if (!reply) return;
+        const tickets = DB.getTickets();
+        const t = tickets.find(x => x.id === ticketId);
+        if (t) {
+          t.messages.push({ sender: "admin", name: "ToolsBuy Support Admin", text: reply, time: "Just now" });
+          t.status = "Resolved";
+          DB.saveTickets(tickets);
+          alert("Reply sent to customer!");
+          renderDashboard();
+        }
+      };
+
+      // Filter Buttons
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.dataset.filter;
+          renderDashboard();
+        });
+      });
+
+      renderDashboard();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & Manual Payment - ToolsBuy</title>
+  <meta name="description" content="Submit your EasyPaisa, JazzCash, Meezan Bank or USDT payment proof and transaction ID for 15-minute activation.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2310a37f'/><text x='50%' y='65%' font-size='50' font-weight='900' fill='white' text-anchor='middle'>TB</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>Tools<span style="color: var(--primary);">Buy</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="plans.html" class="nav-link">Packages</a></li>
+          <li><a href="dashboard.html" class="nav-link">User Dashboard</a></li>
+          <li><a href="admin.html" class="nav-link">Admin Desk</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/923127462475" target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp Support</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Container -->
+  <div class="container" style="padding: 50px 20px;">
+    <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+      <span class="section-tag">Step 2 of 3</span>
+      <h1 class="section-title" style="font-size: 34px;">Checkout & Payment Verification</h1>
+      <p class="section-desc">Transfer funds via your preferred Pakistani gateway, enter your Transaction ID (TID), and submit.</p>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Left Column: Payment Form -->
+      <div class="checkout-card">
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 20px;">1. Select Payment Gateway</h3>
+
+        <!-- Gateway Tabs -->
+        <div class="payment-method-tabs">
+          <div class="payment-tab active" data-method="EasyPaisa">EasyPaisa</div>
+          <div class="payment-tab" data-method="JazzCash">JazzCash</div>
+          <div class="payment-tab" data-method="Meezan Bank">Meezan Bank</div>
+          <div class="payment-tab" data-method="USDT TRC20">USDT (Crypto)</div>
+        </div>
+
+        <!-- Bank Details Card -->
+        <div class="bank-detail-box" id="bankDetailsBox">
+          <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--primary); margin-bottom: 12px;">
+            <span id="gatewayTitle">EasyPaisa Official Business Account</span>
+          </div>
+
+          <div class="copy-row">
+            <div>
+              <span style="font-size: 11px; color: var(--text-dim); display: block;">Account Title</span>
+              <strong style="font-size: 14px;" id="accTitle">ToolsBuy Official</strong>
+            </div>
+            <button type="button" class="copy-btn" onclick="copyText(document.getElementById('accTitle').innerText, this)">Copy</button>
+          </div>
+
+          <div class="copy-row">
+            <div>
+              <span style="font-size: 11px; color: var(--text-dim); display: block;" id="accNumberLabel">Mobile Number</span>
+              <strong style="font-size: 16px; color: #34d399; font-family: var(--font-mono);" id="accNumber">0312-7462475</strong>
+            </div>
+            <button type="button" class="copy-btn" onclick="copyText('03127462475', this)">Copy Number</button>
+          </div>
+
+          <div class="copy-row" id="ibanRow" style="display: none;">
+            <div>
+              <span style="font-size: 11px; color: var(--text-dim); display: block;">IBAN (Raast / All Banks)</span>
+              <strong style="font-size: 13px; font-family: var(--font-mono);" id="ibanNumber">PK00MEZN0001020304050607</strong>
+            </div>
+            <button type="button" class="copy-btn" onclick="copyText(document.getElementById('ibanNumber').innerText, this)">Copy IBAN</button>
+          </div>
+        </div>
+
+        <h3 style="font-size: 18px; font-weight: 800; margin: 30px 0 20px;">2. Your Contact & Payment Proof</h3>
+
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="custName" class="form-input" placeholder="e.g. Muhammad Ali" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">WhatsApp / Phone Number *</label>
+              <input type="text" id="custPhone" class="form-input" placeholder="e.g. 0300 1234567" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" id="custEmail" class="form-input" placeholder="e.g. ali@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Transaction ID / Reference Number (TID) *</label>
+            <input type="text" id="custTid" class="form-input" placeholder="e.g. TRX9928194, JC881920" required style="font-family: var(--font-mono);">
+            <span style="font-size: 11px; color: var(--text-muted); margin-top: 4px; display: block;">
+              Found in the SMS confirmation or banking receipt after sending funds.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Sender Account Name / Notes (Optional)</label>
+            <input type="text" id="custNote" class="form-input" placeholder="e.g. Sent from Ali's EasyPaisa app">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;">
+            Submit Order & Verify Payment →
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Column: Order Summary -->
+      <div class="checkout-card" style="height: fit-content;">
+        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 20px;">Order Summary</h3>
+
+        <div style="padding-bottom: 20px; border-bottom: 1px solid var(--border);">
+          <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--primary);">Selected Package</div>
+          <div style="font-size: 20px; font-weight: 800; margin-top: 4px;" id="orderItemName">Standard Bundle</div>
+          <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="orderItemDesc">Full 30-Day Unlimited Access with 1-Click Launch.</p>
+        </div>
+
+        <div style="padding: 20px 0; border-bottom: 1px solid var(--border); space-y: 8px;">
+          <div style="display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 8px;">
+            <span style="color: var(--text-muted);">Validity Cycle</span>
+            <strong>30 Days (Automatic Renewal Available)</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 8px;">
+            <span style="color: var(--text-muted);">Access Method</span>
+            <strong style="color: #34d399;">1-Click Isolated Cloud Session</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 13.5px;">
+            <span style="color: var(--text-muted);">Activation Time</span>
+            <strong>10 - 30 Minutes</strong>
+          </div>
+        </div>
+
+        <div style="padding-top: 20px; display: flex; align-items: baseline; justify-content: space-between;">
+          <span style="font-size: 16px; font-weight: 700;">Total Payable:</span>
+          <div>
+            <span style="font-size: 14px; color: var(--text-muted);">PKR </span>
+            <strong style="font-size: 32px; font-weight: 900; color: var(--text-main);" id="orderTotalAmount">4,000</strong>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; padding: 14px; background: rgba(16, 163, 127, 0.1); border: 1px solid var(--primary-border); border-radius: var(--radius-sm); font-size: 12px; color: #34d399; line-height: 1.5;">
+          🔒 <strong>24-Hour Guarantee:</strong> In case of any technical verification delay, contact WhatsApp support (+92 312 7462475) for priority activation.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-box" style="text-align: center;">
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(16, 163, 127, 0.15); color: #34d399; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px;">
+        ✓
+      </div>
+      <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Order Received!</h2>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+        Your order has been recorded with status <span style="color: #fbbf24; font-weight: 700;">Pending Verification</span>.
+      </p>
+
+      <div style="background: var(--bg-dark); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border); margin-bottom: 24px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px;">
+          <span style="color: var(--text-muted);">Order Number:</span>
+          <strong style="font-family: var(--font-mono); color: var(--primary);" id="confirmedOrderNum">ORD-89211</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px;">
+          <span style="color: var(--text-muted);">Amount:</span>
+          <strong id="confirmedAmount">PKR 4,000</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <a id="whatsappPriorityBtn" href="#" target="_blank" class="btn btn-whatsapp btn-lg">
+          Fast-Track via WhatsApp (+92 312 7462475)
+        </a>
+        <a href="dashboard.html" class="btn btn-outline">
+          Go to User Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <div>© 2026 ToolsBuy. All rights reserved.</div>
+      <div>Questions? <a href="https://wa.me/923127462475" target="_blank" style="color: var(--primary);">WhatsApp Support</a></div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pkgId = urlParams.get("pkg") || "pkg-standard";
+      const isCustom = urlParams.get("type") === "custom";
+
+      let orderName = "Standard Bundle";
+      let orderAmount = 4000;
+      let orderDesc = "Full 30-Day Unlimited Access with 1-Click Launch.";
+
+      if (isCustom) {
+        const customIds = JSON.parse(localStorage.getItem("tb_custom_selected") || "[]");
+        const allTools = DB.getTools();
+        const chosenTools = allTools.filter(t => customIds.includes(t.id));
+
+        let base = chosenTools.reduce((sum, t) => sum + t.price, 0);
+        if (chosenTools.length >= 3) base = Math.round(base * 0.9);
+
+        orderName = `Custom Bundle (${chosenTools.length} Tools)`;
+        orderAmount = base > 0 ? base : 3500;
+        orderDesc = chosenTools.map(t => t.name).join(", ");
+      } else {
+        const pkgs = DB.getPackages();
+        const p = pkgs.find(x => x.id === pkgId);
+        if (p) {
+          orderName = p.name;
+          orderAmount = p.price;
+          orderDesc = p.desc;
+        }
+      }
+
+      document.getElementById("orderItemName").innerText = orderName;
+      document.getElementById("orderItemDesc").innerText = orderDesc;
+      document.getElementById("orderTotalAmount").innerText = orderAmount.toLocaleString();
+
+      // Gateway switching
+      let activeMethod = "EasyPaisa";
+      const tabs = document.querySelectorAll(".payment-tab");
+      const gatewayTitle = document.getElementById("gatewayTitle");
+      const accNumber = document.getElementById("accNumber");
+      const accNumberLabel = document.getElementById("accNumberLabel");
+      const ibanRow = document.getElementById("ibanRow");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          activeMethod = tab.dataset.method;
+
+          if (activeMethod === "EasyPaisa") {
+            gatewayTitle.innerText = "EasyPaisa Official Business Account";
+            accNumber.innerText = "0312-7462475";
+            accNumberLabel.innerText = "Mobile Number";
+            ibanRow.style.display = "none";
+          } else if (activeMethod === "JazzCash") {
+            gatewayTitle.innerText = "JazzCash Official Account";
+            accNumber.innerText = "0312-7462475";
+            accNumberLabel.innerText = "Mobile Number";
+            ibanRow.style.display = "none";
+          } else if (activeMethod === "Meezan Bank") {
+            gatewayTitle.innerText = "Meezan Bank Limited";
+            accNumber.innerText = "01020304050607";
+            accNumberLabel.innerText = "Account Number";
+            ibanRow.style.display = "flex";
+          } else if (activeMethod === "USDT TRC20") {
+            gatewayTitle.innerText = "USDT (TRC-20) Crypto Wallet";
+            accNumber.innerText = "TYdCqV9Xp7z8WbK1mN2qR4tY6uI8oP0sLa";
+            accNumberLabel.innerText = "Wallet Address";
+            ibanRow.style.display = "none";
+          }
+        });
+      });
+
+      // Handle Submit
+      const form = document.getElementById("checkoutForm");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("custName").value.trim();
+        const phone = document.getElementById("custPhone").value.trim();
+        const email = document.getElementById("custEmail").value.trim();
+        const tid = document.getElementById("custTid").value.trim();
+        const note = document.getElementById("custNote").value.trim();
+
+        const orderNum = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
+
+        const newOrder = {
+          id: `ord-${Date.now()}`,
+          orderNumber: orderNum,
+          name,
+          phone,
+          email,
+          packageName: orderName,
+          amount: orderAmount,
+          method: activeMethod,
+          tid,
+          note,
+          status: "pending",
+          date: new Date().toLocaleDateString(),
+        };
+
+        const existingOrders = DB.getOrders();
+        existingOrders.unshift(newOrder);
+        DB.saveOrders(existingOrders);
+
+        // Update success modal
+        document.getElementById("confirmedOrderNum").innerText = orderNum;
+        document.getElementById("confirmedAmount").innerText = `PKR ${orderAmount.toLocaleString()}`;
+
+        const waUrl = `https://wa.me/923127462475?text=${encodeURIComponent(
+          `Hello ToolsBuy! I have completed payment for Order #${orderNum} (${orderName}, PKR ${orderAmount.toLocaleString()}). My TID is: ${tid}. Please activate my subscription.`
+        )}`;
+        document.getElementById("whatsappPriorityBtn").href = waUrl;
+
+        openModal("orderSuccessModal");
+      });
+    });
+  </script>
+</body>
+</html>
