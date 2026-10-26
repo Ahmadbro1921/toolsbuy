@@ -29,13 +29,27 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     return { title: "Tool Not Found" };
   }
 
+  const rawUrl = process.env.NEXT_PUBLIC_APP_URL || "https://aihub.local";
+  const baseUrl = rawUrl.replace(/\/+$/, "");
+  const canonicalUrl = `${baseUrl}/tools/${tool.slug}`;
+
   return {
     title: `${tool.name} — AI Tool Review, Features & Pricing`,
     description: tool.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
+      title: `${tool.name} — AI Tool Review & Pricing | AI Hub`,
+      description: tool.description,
+      url: canonicalUrl,
+      images: tool.logo_url ? [{ url: tool.logo_url }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
       title: `${tool.name} — AI Hub`,
       description: tool.description,
-      images: tool.logo_url ? [{ url: tool.logo_url }] : [],
+      images: tool.logo_url ? [tool.logo_url] : [],
     },
   };
 }
@@ -48,6 +62,9 @@ export default async function ToolDetailPage({ params }: ToolPageProps) {
     notFound();
   }
 
+  const rawUrl = process.env.NEXT_PUBLIC_APP_URL || "https://aihub.local";
+  const baseUrl = rawUrl.replace(/\/+$/, "");
+
   // Get related tools in the same category
   const { tools: categoryTools } = await getTools({
     categoryId: tool.category_id,
@@ -59,18 +76,46 @@ export default async function ToolDetailPage({ params }: ToolPageProps) {
   // Structured Data (JSON-LD) for SEO
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: tool.name,
-    description: tool.description,
-    applicationCategory: tool.category?.name || "Artificial Intelligence",
-    operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: tool.pricing_type === "Free" || tool.pricing_type === "Open Source" ? "0" : undefined,
-      priceCurrency: "USD",
-      category: tool.pricing_type,
-    },
-    url: tool.official_url,
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        name: tool.name,
+        description: tool.description,
+        applicationCategory: tool.category?.name || "Artificial Intelligence",
+        operatingSystem: "Web",
+        image: tool.logo_url,
+        offers: {
+          "@type": "Offer",
+          price: tool.pricing_type === "Free" || tool.pricing_type === "Open Source" ? "0" : undefined,
+          priceCurrency: "USD",
+          category: tool.pricing_type,
+        },
+        url: tool.official_url,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: baseUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Tools",
+            item: `${baseUrl}/tools`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: tool.name,
+            item: `${baseUrl}/tools/${tool.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
