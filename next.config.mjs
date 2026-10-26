@@ -17,6 +17,10 @@ const nextConfig = {
         source: '/sitemaps.xml',
         destination: '/sitemap.xml',
       },
+      {
+        source: '/pricing',
+        destination: '/plans',
+      },
     ];
   },
   async headers() {

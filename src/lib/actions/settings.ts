@@ -62,10 +62,31 @@ export async function updateSeoSettingsAction(formData: FormData): Promise<void>
   const admin = await assertAdmin();
 
   const seo = {
-    defaultTitle: (formData.get("defaultTitle") as string) || "AI Hub — Premier AI Tools Directory",
+    defaultTitle: (formData.get("defaultTitle") as string) || "ToolsBuy — Amazon & AI Tools",
     defaultDescription: (formData.get("defaultDescription") as string) || "",
   };
 
   await updateSiteSettings("seo", seo, admin.id);
   revalidatePath("/admin/settings");
 }
+
+export async function updatePaymentSettingsAction(formData: FormData): Promise<void> {
+  const admin = await assertAdmin();
+
+  const payments = {
+    bank_name: (formData.get("bank_name") as string)?.trim() || "Meezan Bank Limited",
+    account_title: (formData.get("account_title") as string)?.trim() || "ToolsBuy Official",
+    account_number: (formData.get("account_number") as string)?.trim() || "",
+    iban: (formData.get("iban") as string)?.trim() || "",
+    easypaisa_title: (formData.get("easypaisa_title") as string)?.trim() || "ToolsBuy Official",
+    easypaisa_number: (formData.get("easypaisa_number") as string)?.trim() || "",
+    jazzcash_title: (formData.get("jazzcash_title") as string)?.trim() || "ToolsBuy Official",
+    jazzcash_number: (formData.get("jazzcash_number") as string)?.trim() || "",
+    usdt_address: (formData.get("usdt_address") as string)?.trim() || "",
+  };
+
+  await updateSiteSettings("payments", payments, admin.id);
+  revalidatePath("/admin/settings");
+  revalidatePath("/order/checkout");
+}
+

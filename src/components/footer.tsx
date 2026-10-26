@@ -1,166 +1,153 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Sparkles, Heart, CheckCircle2, Shield, ArrowRight } from "lucide-react";
+import { ShieldCheck, PhoneCall, CheckCircle, Package, Wrench, HelpCircle } from "lucide-react";
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [consent, setConsent] = useState(false);
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !consent) return;
-    setSubscribed(true);
-  };
-
   return (
-    <footer className="border-t border-border/70 bg-card/40 backdrop-blur-md">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
-          {/* Brand Info */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-400 flex items-center justify-center text-white shadow-sm">
-                <Sparkles className="w-4 h-4" />
+    <>
+      <footer className="border-t border-border bg-slate-950 text-slate-300">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+            {/* Brand Info */}
+            <div className="lg:col-span-2 space-y-4">
+              <Link href="/" className="inline-flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 p-2 flex items-center justify-center text-white shrink-0">
+                  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                    <rect x="6" y="34" width="14" height="24" rx="4" fill="white" fillOpacity="0.8" />
+                    <rect x="25" y="20" width="14" height="38" rx="4" fill="white" />
+                    <rect x="44" y="8" width="14" height="50" rx="4" fill="white" />
+                  </svg>
+                </div>
+                <span className="font-extrabold text-2xl tracking-tight text-white">ToolsBuy</span>
+              </Link>
+              <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+                Affordable and secure access to expensive Amazon product-hunting tools, AI models, and digital suites with 1-click cloud access and 24/7 dedicated support.
+              </p>
+              
+              <div className="pt-2">
+                <a
+                  href="https://wa.me/923127462475"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-600 transition-colors shadow-sm"
+                >
+                  <PhoneCall className="w-4 h-4" />
+                  <span>+92 312 7462475</span>
+                </a>
               </div>
-              <span className="font-bold text-xl tracking-tight">AI Hub</span>
-            </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
-              Discover, compare, and leverage the most powerful AI tools, models, and platforms. Curated with unbiased testing and transparent categorization.
-            </p>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground pt-1">
-              <Shield className="w-4 h-4 text-emerald-500" />
-              <span>Independent & Community Verified</span>
+            </div>
+
+            {/* Packages */}
+            <div>
+              <h4 className="font-bold text-sm text-white uppercase tracking-wider mb-4">Packages</h4>
+              <ul className="space-y-2.5 text-sm text-slate-400">
+                <li>
+                  <Link href="/plans" className="hover:text-emerald-400 transition-colors">
+                    Basic Bundle V2
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/plans" className="hover:text-emerald-400 transition-colors">
+                    Standard Bundle V2 (Popular)
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/plans" className="hover:text-emerald-400 transition-colors">
+                    Premium Bundle V2
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/plans#custom-builder" className="hover:text-emerald-400 transition-colors">
+                    Custom Package Builder
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-bold text-sm text-white uppercase tracking-wider mb-4">Quick Links</h4>
+              <ul className="space-y-2.5 text-sm text-slate-400">
+                <li>
+                  <Link href="/tools" className="hover:text-emerald-400 transition-colors">
+                    All Tools Directory
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#how-it-works" className="hover:text-emerald-400 transition-colors">
+                    How It Works
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#faq" className="hover:text-emerald-400 transition-colors">
+                    Frequently Asked Questions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/login" className="hover:text-emerald-400 transition-colors">
+                    Customer Login
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/signup" className="hover:text-emerald-400 transition-colors">
+                    Create Account
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="font-bold text-sm text-white uppercase tracking-wider mb-4">Support & Trust</h4>
+              <ul className="space-y-2.5 text-sm text-slate-400">
+                <li>
+                  <Link href="/contact" className="hover:text-emerald-400 transition-colors">
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy" className="hover:text-emerald-400 transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="hover:text-emerald-400 transition-colors">
+                    Terms & Conditions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/affiliate-disclosure" className="hover:text-emerald-400 transition-colors">
+                    Refund & Fair Use Policy
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
 
-          {/* Directory Links */}
-          <div>
-            <h4 className="font-semibold text-sm mb-3">Directory</h4>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li>
-                <Link href="/tools" className="hover:text-foreground transition-colors">
-                  All AI Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories" className="hover:text-foreground transition-colors">
-                  Browse Categories
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/text-llms" className="hover:text-foreground transition-colors">
-                  LLMs & Writing
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/code-dev" className="hover:text-foreground transition-colors">
-                  Code & Developer Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories/image-art" className="hover:text-foreground transition-colors">
-                  Image & Design
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Platform Links */}
-          <div>
-            <h4 className="font-semibold text-sm mb-3">Platform</h4>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li>
-                <Link href="/about" className="hover:text-foreground transition-colors">
-                  About AI Hub
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-foreground transition-colors">
-                  Contact Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/affiliate-disclosure" className="hover:text-foreground transition-colors">
-                  Affiliate Disclosure
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-foreground transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-foreground transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter Signup with explicit consent */}
-          <div>
-            <h4 className="font-semibold text-sm mb-3">AI Weekly Digest</h4>
-            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
-              Get the latest curated AI breakthroughs, launches, and workflows delivered to your inbox.
-            </p>
-
-            {subscribed ? (
-              <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs">
-                <CheckCircle2 className="w-4 h-4 shrink-0" />
-                <span>Thank you! You are subscribed to AI Weekly.</span>
-              </div>
-            ) : (
-              <form onSubmit={handleNewsletterSubmit} className="space-y-2.5">
-                <div className="flex gap-1.5">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="w-full text-xs px-3 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-1 focus:ring-primary"
-                  />
-                  <button
-                    type="submit"
-                    disabled={!consent}
-                    className="px-3 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-medium disabled:opacity-50 transition-opacity"
-                  >
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-                <label className="flex items-start gap-2 text-[11px] text-muted-foreground cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-0.5 rounded border-border text-primary focus:ring-primary h-3.5 w-3.5"
-                  />
-                  <span>I agree to receive weekly updates and accept the privacy policy.</span>
-                </label>
-              </form>
-            )}
+          <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <p>© {new Date().getFullYear()} ToolsBuy. All rights reserved. Direct 1-Click Access Platform.</p>
+            <div className="flex items-center gap-6">
+              <span className="flex items-center gap-1.5 text-emerald-400">
+                <ShieldCheck className="w-4 h-4" /> 100% Virus & Malware Free
+              </span>
+              <span>24/7 Activation Support</span>
+            </div>
           </div>
         </div>
+      </footer>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} AI Hub Directory. Engineered for precision and transparency.</p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="hover:text-foreground">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-foreground">
-              Terms
-            </Link>
-            <Link href="/affiliate-disclosure" className="hover:text-foreground">
-              Disclosure
-            </Link>
-          </div>
-        </div>
-      </div>
-    </footer>
+      {/* Floating WhatsApp Action Button */}
+      <a
+        href="https://wa.me/923127462475"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-20 sm:bottom-6 left-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold shadow-xl shadow-emerald-950/40 hover:scale-105 transition-all text-xs sm:text-sm"
+        title="Chat with ToolsBuy on WhatsApp"
+      >
+        <PhoneCall className="w-4 h-4" />
+        <span className="hidden sm:inline">WhatsApp Support</span>
+      </a>
+    </>
   );
 }

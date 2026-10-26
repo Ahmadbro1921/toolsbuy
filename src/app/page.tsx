@@ -1,253 +1,449 @@
 import Link from "next/link";
-import { getTools, getCategories, getCurrentUserSession } from "@/lib/supabase/store";
-import { ToolCard } from "@/components/tool-card";
+import { getPackages, getTools, getCurrentUserSession } from "@/lib/supabase/store";
+import { HomeFAQ } from "@/components/home-faq";
 import {
   Sparkles,
   ArrowRight,
-  TrendingUp,
-  Search,
   CheckCircle2,
   Zap,
-  Shield,
-  Layers,
-  Star,
-  ExternalLink,
-  Code,
-  Bot,
-  Image as ImageIcon,
+  ShieldCheck,
+  Clock,
   Headphones,
-  Video,
+  SlidersHorizontal,
+  ExternalLink,
+  MessageCircle,
+  Flame,
+  Layers,
+  Lock,
+  Globe2,
 } from "lucide-react";
+
+export const metadata = {
+  title: "ToolsBuy - All Premium Amazon, AI & SEO Tools in One Subscription",
+  description:
+    "Get instant 1-click cloud access to Helium 10 Diamond, Jungle Scout, Keepa Pro, ChatGPT Plus, Claude 3.5 Sonnet, Midjourney, Semrush & Canva Pro. Packages starting at PKR 3,500/month with EasyPaisa, JazzCash, Meezan Bank & USDT.",
+};
+
+const TOP_TOOLS = [
+  { name: "Helium 10 Diamond", cat: "Amazon FBA", badge: "Seller Favorite" },
+  { name: "ChatGPT Plus 4o", cat: "AI Superpowers", badge: "GPT-4o & Canvas" },
+  { name: "Claude 3.5 Sonnet", cat: "AI Coding & Writing", badge: "Artifacts" },
+  { name: "Midjourney v6", cat: "Image Generation", badge: "Fast Hours" },
+  { name: "Keepa Pro", cat: "Price Tracking", badge: "Realtime BSR" },
+  { name: "Jungle Scout", cat: "Product Research", badge: "Accurate Sales" },
+  { name: "Semrush Guru", cat: "SEO & Backlinks", badge: "Competitive Intel" },
+  { name: "Canva Pro", cat: "Design & Graphics", badge: "Full Access" },
+  { name: "Perplexity Pro", cat: "Research & Citations", badge: "Claude & Sonar" },
+  { name: "Freepik Premium", cat: "Assets & Vectors", badge: "Unlimited" },
+];
+
+const FEATURES = [
+  {
+    icon: Zap,
+    title: "1-Click Direct Cloud Launch",
+    description:
+      "Say goodbye to complicated browser extensions and shared passwords. Launch your tools directly from your personal dashboard with isolated session tokens.",
+  },
+  {
+    icon: Clock,
+    title: "99.9% Monitored Uptime",
+    description:
+      "Our automated session guards verify login cookies 24/7 so your work never halts during vital product research, client meetings, or listing launches.",
+  },
+  {
+    icon: Headphones,
+    title: "24/7 WhatsApp & Ticket Support",
+    description:
+      "Our Lahore-based technical support team is available round-the-clock on WhatsApp (+92 312 7462475) and via internal dashboard tickets.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safe, Private & Virus-Free",
+    description:
+      "100% clean browser-based sessions. We never require you to download risky executable files, cracked software, or third-party patchers.",
+  },
+  {
+    icon: Lock,
+    title: "Easy Local Payment Gateways",
+    description:
+      "Pay securely using EasyPaisa, JazzCash, Meezan Bank / Raast, or USDT (TRC-20) with automated receipt generation and fast 15-minute activation.",
+  },
+  {
+    icon: Globe2,
+    title: "Fair Use & Replacement Guarantee",
+    description:
+      "We guarantee active access throughout your entire 30-day cycle. If any tool encounters downtime exceeding 24 hours, you receive instant replacement credit.",
+  },
+];
+
+const STEPS = [
+  {
+    step: "01",
+    title: "Choose or Build Your Bundle",
+    description:
+      "Pick from our best-selling Basic, Standard, or Premium bundles, or use our interactive Custom Builder to pick exact tools.",
+  },
+  {
+    step: "02",
+    title: "Pay via EasyPaisa / JazzCash / Bank",
+    description:
+      "Send payment to our verified business accounts, copy the Transaction ID (TID), and submit your order in under 60 seconds.",
+  },
+  {
+    step: "03",
+    title: "1-Click Launch from Dashboard",
+    description:
+      "Your dashboard unlocks within 10-30 minutes. Click 'Launch Tool' to immediately start using Helium 10, ChatGPT Plus, and more!",
+  },
+];
 
 export default async function HomePage() {
   const session = await getCurrentUserSession();
-  const categories = await getCategories();
-  const { tools: featuredTools } = await getTools({ isFeatured: true, limit: 6 });
-  const { tools: recentTools } = await getTools({ sortBy: "newest", limit: 6 });
-
-  const categoryIcons: Record<string, any> = {
-    Bot,
-    Image: ImageIcon,
-    Code,
-    Headphones,
-    Video,
-    Zap,
-    Search,
-  };
+  const packages = await getPackages();
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden hero-glow pt-20 pb-24 md:pt-28 md:pb-32 px-4 sm:px-6">
+      {/* 1. Hero Section */}
+      <section className="relative overflow-hidden bg-background hero-glow pt-20 pb-24 md:pt-28 md:pb-32 px-4 sm:px-6">
         <div className="container max-w-5xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold animate-pulse">
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold shadow-glow">
+            <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Over 1,200+ Verified AI Tools & Models</span>
+            <span>Instant Cloud Access · 24/7 WhatsApp Support · 99.9% Uptime</span>
           </div>
 
+          {/* Main Headline */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-balance">
-            Discover the Best <span className="gradient-text">AI Tools</span>
+            All Your Premium <span className="gradient-text">Amazon, AI & SEO Tools</span> In One Subscription
           </h1>
 
-          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed">
-            The definitive SaaS directory for exploring, benchmarking, and integrating cutting-edge artificial intelligence into your personal and engineering workflows.
+          {/* Subtitle */}
+          <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto text-balance leading-relaxed">
+            Stop paying thousands of dollars every month for Helium 10 Diamond, ChatGPT Plus, Claude 3.5 Sonnet, Midjourney, and Keepa Pro. Get seamless 1-click cloud access starting from just <span className="text-foreground font-bold">PKR 3,500/month</span>.
           </p>
 
-          {/* Instant Search Bar */}
-          <div className="pt-4 max-w-2xl mx-auto">
-            <form action="/tools" method="GET" className="relative flex items-center">
-              <Search className="absolute left-4 w-5 h-5 text-muted-foreground pointer-events-none" />
-              <input
-                type="text"
-                name="q"
-                placeholder="Search by keyword, task, or model (e.g., Code, Voice, Claude, LLM)..."
-                className="w-full pl-12 pr-32 py-4 rounded-2xl bg-card border border-border/80 shadow-2xl text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-              />
-              <button
-                type="submit"
-                className="absolute right-2.5 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs sm:text-sm hover:bg-primary/90 transition-all hover:scale-[1.02]"
-              >
-                Search
-              </button>
-            </form>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4">
+            <Link
+              href="/plans"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-base hover:bg-primary/90 transition-all shadow-glow hover:scale-[1.02] flex items-center justify-center gap-2"
+            >
+              <Zap className="w-4 h-4 fill-current" />
+              View Packages (From PKR 3,500)
+            </Link>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-3 text-xs text-muted-foreground">
-              <span>Popular searches:</span>
-              {["ChatGPT", "Cursor", "Claude", "Runway", "Midjourney", "ElevenLabs"].map((term) => (
-                <Link
-                  key={term}
-                  href={`/tools?q=${encodeURIComponent(term)}`}
-                  className="px-2.5 py-1 rounded-md bg-muted/70 hover:bg-muted text-foreground transition-colors"
-                >
-                  {term}
-                </Link>
-              ))}
+            <Link
+              href="/plans#custom-builder"
+              className="w-full sm:w-auto px-7 py-4 rounded-xl border border-border bg-card/80 hover:bg-card text-foreground font-semibold text-base transition-all hover:border-primary/50 flex items-center justify-center gap-2"
+            >
+              <SlidersHorizontal className="w-4 h-4 text-primary" />
+              Build Custom Bundle
+            </Link>
+
+            <a
+              href="https://wa.me/923127462475?text=Hello%20ToolsBuy!%20I%20want%20to%20order%20a%20tools%20package."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-6 py-4 rounded-xl bg-emerald-600/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-600/25 font-semibold text-base transition-all flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-4 h-4" />
+              WhatsApp Live Chat
+            </a>
+          </div>
+
+          {/* Trust Highlights Counters */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12 border-t border-border/50 max-w-4xl mx-auto">
+            <div className="p-4 rounded-2xl bg-card/60 border border-border/60">
+              <div className="text-2xl sm:text-3xl font-extrabold text-foreground">20+</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-0.5">Premium Tools Active</div>
+            </div>
+            <div className="p-4 rounded-2xl bg-card/60 border border-border/60">
+              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400">99.9%</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-0.5">Guaranteed Uptime</div>
+            </div>
+            <div className="p-4 rounded-2xl bg-card/60 border border-border/60">
+              <div className="text-2xl sm:text-3xl font-extrabold text-primary">1-Click</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-0.5">Instant Cloud Launch</div>
+            </div>
+            <div className="p-4 rounded-2xl bg-card/60 border border-border/60">
+              <div className="text-2xl sm:text-3xl font-extrabold text-foreground">5,000+</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-0.5">Pakistani Sellers & Pros</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Popular Categories Grid */}
-      <section className="py-14 border-y border-border/60 bg-muted/10 px-4 sm:px-6">
-        <div className="container max-w-7xl mx-auto space-y-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-primary">Browse By Domain</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">
-                Explore Popular Categories
-              </h2>
-            </div>
-            <Link
-              href="/categories"
-              className="text-xs sm:text-sm font-semibold text-primary hover:underline flex items-center gap-1"
+      {/* 2. Top Tools Running Strip */}
+      <section className="py-8 border-y border-border/60 bg-card/40 overflow-hidden">
+        <div className="container max-w-7xl mx-auto px-4 mb-4 text-center">
+          <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            Featured in our all-in-one cloud subscriptions
+          </span>
+        </div>
+        <div className="flex gap-4 overflow-x-auto no-scrollbar px-4 sm:px-6 py-2 max-w-7xl mx-auto">
+          {TOP_TOOLS.map((tool, idx) => (
+            <div
+              key={idx}
+              className="shrink-0 flex items-center gap-3 px-4 py-3 rounded-xl border border-border/70 bg-card hover:border-primary/50 transition-colors shadow-sm"
             >
-              All Categories <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+              <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                {tool.name.slice(0, 2).toUpperCase()}
+              </div>
+              <div>
+                <div className="font-semibold text-xs sm:text-sm text-foreground flex items-center gap-1.5">
+                  {tool.name}
+                </div>
+                <div className="text-[11px] text-muted-foreground">{tool.cat}</div>
+              </div>
+              <span className="ml-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                {tool.badge}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Curated Pricing Packages Section */}
+      <section className="py-20 px-4 sm:px-6 bg-background relative">
+        <div className="container max-w-7xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">Pre-Made Bundles</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+              Simple, Transparent Pricing in PKR
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Choose the package tailored to your exact business workflow. All plans include 30-day unlimited access, 1-click cloud launch, and 24/7 WhatsApp support.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3.5">
-            {categories.map((cat) => {
-              const IconComp = categoryIcons[cat.icon] || Sparkles;
-              return (
-                <Link
-                  key={cat.id}
-                  href={`/categories/${cat.slug}`}
-                  className="group rounded-2xl border border-border/80 bg-card p-4 hover:border-primary/50 hover:shadow-lg transition-all flex flex-col items-center text-center space-y-2.5"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <IconComp className="w-5 h-5" />
+          {/* Pricing Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {packages.map((pkg) => (
+              <div
+                key={pkg.id}
+                className={`relative rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
+                  pkg.is_popular
+                    ? "border-2 border-primary bg-card shadow-2xl shadow-primary/10 scale-[1.03] z-10"
+                    : "border border-border/80 bg-card/60 hover:border-border"
+                }`}
+              >
+                {pkg.is_popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-primary-foreground text-xs font-extrabold uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                    <Flame className="w-3.5 h-3.5 fill-current" />
+                    Most Popular Choice
                   </div>
-                  <span className="font-semibold text-xs tracking-tight text-foreground group-hover:text-primary transition-colors">
-                    {cat.name}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground">{cat.tool_count || 0} tools</span>
-                </Link>
+                )}
+
+                <div>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">{pkg.name}</h3>
+                      <p className="text-xs text-muted-foreground mt-1">{pkg.description}</p>
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div className="mt-6 pb-6 border-b border-border/60">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-xs font-bold text-muted-foreground">PKR</span>
+                      <span className="text-4xl font-extrabold text-foreground tracking-tight">
+                        {pkg.price_pkr.toLocaleString()}
+                      </span>
+                      <span className="text-xs text-muted-foreground">/ month</span>
+                    </div>
+                    <div className="text-[11px] text-primary font-medium mt-1">
+                      Zero hidden charges · 30 Days Full Validity
+                    </div>
+                  </div>
+
+                  {/* Feature List */}
+                  <div className="mt-6 space-y-3">
+                    <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Included Tools & Benefits:
+                    </div>
+                    {pkg.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground">
+                        <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card CTA */}
+                <div className="mt-8 pt-4">
+                  <Link
+                    href={`/order/checkout?package=${pkg.id}`}
+                    className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                      pkg.is_popular
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow"
+                        : "bg-muted hover:bg-muted/80 text-foreground"
+                    }`}
+                  >
+                    <span>Order {pkg.name}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <p className="text-[11px] text-center text-muted-foreground mt-2">
+                    EasyPaisa · JazzCash · Bank · USDT
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Custom Package Builder Callout */}
+          <div className="rounded-3xl border border-primary/30 bg-gradient-to-r from-primary/10 via-card to-card p-8 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 shadow-glow">
+            <div className="space-y-2 text-center md:text-left">
+              <span className="text-xs font-bold uppercase tracking-wider text-primary">Need Specific Tools Only?</span>
+              <h3 className="text-xl sm:text-2xl font-extrabold text-foreground">
+                Build Your Own Custom Tool Bundle
+              </h3>
+              <p className="text-sm text-muted-foreground max-w-xl">
+                Choose only the tools you want (e.g. Helium 10 + ChatGPT Plus). Real-time price calculation starting from PKR 700 with automatic combo discounts.
+              </p>
+            </div>
+            <Link
+              href="/plans#custom-builder"
+              className="shrink-0 px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-glow flex items-center gap-2"
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+              Open Custom Builder
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Why Choose ToolsBuy (Features Grid) */}
+      <section className="py-20 px-4 sm:px-6 bg-card/30 border-y border-border/60">
+        <div className="container max-w-7xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">The ToolsBuy Advantage</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Why 5,000+ Pakistani Sellers & Creatives Choose Us
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Engineered for seamless reliability, bank-grade account security, and zero disruption.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {FEATURES.map((feat, idx) => {
+              const IconComp = feat.icon;
+              return (
+                <div
+                  key={idx}
+                  className="rounded-2xl border border-border/70 bg-card p-6 space-y-3 hover:border-primary/40 transition-colors shadow-sm"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                    <IconComp className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-base text-foreground">{feat.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    {feat.description}
+                  </p>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Featured AI Tools */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6">
-        <div className="container max-w-7xl mx-auto space-y-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-500">Hand-Picked</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">
-                Featured AI Tools
-              </h2>
-            </div>
-            <Link
-              href="/tools"
-              className="text-xs sm:text-sm font-semibold text-primary hover:underline flex items-center gap-1"
-            >
-              View Full Directory <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredTools.map((tool) => (
-              <ToolCard
-                key={tool.id}
-                tool={tool}
-                viewMode="grid"
-                isSignedIn={Boolean(session)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trending & Recently Added */}
-      <section className="py-16 bg-muted/10 border-t border-border/60 px-4 sm:px-6">
-        <div className="container max-w-7xl mx-auto space-y-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-cyan-500" />
-                <span className="text-xs font-bold uppercase tracking-wider text-cyan-500">Recently Added</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">
-                Freshly Indexed AI Tools
-              </h2>
-            </div>
-            <Link
-              href="/tools?sort=newest"
-              className="text-xs sm:text-sm font-semibold text-primary hover:underline flex items-center gap-1"
-            >
-              See All Recent <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentTools.map((tool) => (
-              <ToolCard
-                key={tool.id}
-                tool={tool}
-                viewMode="grid"
-                isSignedIn={Boolean(session)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits & How It Works */}
-      <section className="py-20 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto space-y-12 text-center">
-          <div className="space-y-3 max-w-2xl mx-auto">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary">Why AI Hub?</span>
+      {/* 5. How It Works (3 Steps) */}
+      <section className="py-20 px-4 sm:px-6 bg-background">
+        <div className="container max-w-5xl mx-auto space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">Simple Process</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Engineered for Modern Engineers & Creators
+              Get Started in 3 Easy Steps
             </h2>
             <p className="text-sm text-muted-foreground">
-              We cut through the AI marketing hype to deliver honest capabilities, clear pricing models, and tested workflows.
+              From checkout to cloud tool launch in less than 15 minutes.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div className="p-6 rounded-2xl border border-border/80 bg-card space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-400 flex items-center justify-center">
-                <Shield className="w-5 h-5" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {STEPS.map((s, idx) => (
+              <div
+                key={idx}
+                className="relative rounded-2xl border border-border/70 bg-card p-6 space-y-4"
+              >
+                <div className="text-4xl font-black text-primary/30 tracking-tight">{s.step}</div>
+                <h3 className="text-base font-bold text-foreground">{s.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  {s.description}
+                </p>
               </div>
-              <h3 className="font-bold text-base">Unbiased Verification</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                No paid-for inflated rankings. Every tool card clearly specifies whether the service requires an external account, pricing limits, and key capabilities.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl border border-border/80 bg-card space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center">
-                <Zap className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-base">Instant Live Discovery</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Filter by open source, free trials, multimodal capabilities, and technical stacks with zero page lag.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl border border-border/80 bg-card space-y-3 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-                <Layers className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-base">Smart Bookmarks & History</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Create a free account to track tools you frequently launch, organize favorites into your dashboard, and stay on top of updates.
-              </p>
-            </div>
+            ))}
           </div>
 
-          <div className="pt-4">
+          <div className="text-center pt-4">
             <Link
-              href="/signup"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 shadow-md shadow-primary/25 hover:scale-[1.02] transition-all"
+              href="/plans"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-glow"
             >
-              Join AI Hub Free <ArrowRight className="w-4 h-4" />
+              <span>Explore Packages & Start</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Interactive FAQ Accordion */}
+      <section className="py-20 px-4 sm:px-6 bg-card/20 border-t border-border/60">
+        <div className="container max-w-4xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-primary">Got Questions?</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Everything you need to know about our subscriptions, 1-click cloud access, and payment verification.
+            </p>
+          </div>
+
+          <HomeFAQ />
+
+          <div className="text-center pt-4 text-xs sm:text-sm text-muted-foreground">
+            Still have questions?{" "}
+            <a
+              href="https://wa.me/923127462475"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-semibold hover:underline"
+            >
+              Chat directly with our Lahore support team on WhatsApp (+92 312 7462475)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Bottom High-Converting WhatsApp CTA Banner */}
+      <section className="py-16 px-4 sm:px-6 bg-gradient-to-b from-card to-background border-t border-border/60">
+        <div className="container max-w-4xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-foreground">
+            Ready to Supercharge Your Business with ToolsBuy?
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+            Join thousands of Amazon FBA sellers, digital agencies, and AI developers saving thousands of dollars every month. Instant activation available 24/7.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+            <Link
+              href="/plans"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm sm:text-base hover:bg-primary/90 transition-all shadow-glow"
+            >
+              Order Online Now
+            </Link>
+            <a
+              href="https://wa.me/923127462475?text=Hello%20ToolsBuy!%20I%20want%20to%20order%20now."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-emerald-600 text-white font-bold text-sm sm:text-base hover:bg-emerald-500 transition-all shadow-lg flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Order via WhatsApp (+92 312 7462475)
+            </a>
           </div>
         </div>
       </section>

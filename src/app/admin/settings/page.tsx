@@ -4,6 +4,7 @@ import {
   updateFeatureSettingsAction,
   updateContactSettingsAction,
   updateSeoSettingsAction,
+  updatePaymentSettingsAction,
 } from "@/lib/actions/settings";
 import {
   Settings,
@@ -14,6 +15,7 @@ import {
   Globe,
   Sliders,
   CheckCircle,
+  CreditCard,
 } from "lucide-react";
 
 export default async function AdminSettingsPage() {
@@ -199,6 +201,125 @@ export default async function AdminSettingsPage() {
               className="px-5 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90"
             >
               Update Policy Toggles
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* Section 4: Manual Payment Accounts & WhatsApp */}
+      <div className="p-6 sm:p-8 rounded-3xl border border-border/80 bg-card space-y-4 shadow-sm">
+        <h3 className="font-bold text-base flex items-center gap-2">
+          <CreditCard className="w-4 h-4 text-emerald-400" /> Manual Payment Gateways & Receiving Accounts
+        </h3>
+        <p className="text-xs text-muted-foreground">
+          These account numbers are shown to customers on the <code className="text-foreground">/order/checkout</code> page.
+        </p>
+
+        <form action={updatePaymentSettingsAction} className="space-y-4 text-xs">
+          {/* EasyPaisa */}
+          <div className="p-4 rounded-2xl bg-muted/30 border border-border/60 space-y-3">
+            <h4 className="font-bold text-xs text-emerald-400">EasyPaisa Account</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block font-semibold mb-1">Account Title</label>
+                <input
+                  type="text"
+                  name="easypaisa_title"
+                  defaultValue={settings.payments.easypaisa_title}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="block font-semibold mb-1">Account / Mobile Number</label>
+                <input
+                  type="text"
+                  name="easypaisa_number"
+                  defaultValue={settings.payments.easypaisa_number}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* JazzCash */}
+          <div className="p-4 rounded-2xl bg-muted/30 border border-border/60 space-y-3">
+            <h4 className="font-bold text-xs text-amber-400">JazzCash Account</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block font-semibold mb-1">Account Title</label>
+                <input
+                  type="text"
+                  name="jazzcash_title"
+                  defaultValue={settings.payments.jazzcash_title}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="block font-semibold mb-1">Account / Mobile Number</label>
+                <input
+                  type="text"
+                  name="jazzcash_number"
+                  defaultValue={settings.payments.jazzcash_number}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Bank Transfer */}
+          <div className="p-4 rounded-2xl bg-muted/30 border border-border/60 space-y-3">
+            <h4 className="font-bold text-xs text-blue-400">Meezan Bank / Bank Account</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label className="block font-semibold mb-1">Bank Name</label>
+                <input
+                  type="text"
+                  name="bank_name"
+                  defaultValue={settings.payments.bank_name}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="block font-semibold mb-1">Account Title</label>
+                <input
+                  type="text"
+                  name="account_title"
+                  defaultValue={settings.payments.account_title}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label className="block font-semibold mb-1">Account / IBAN Number</label>
+                <input
+                  type="text"
+                  name="account_number"
+                  defaultValue={settings.payments.account_number}
+                  className="w-full px-3 py-2 rounded-xl bg-background border border-border text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* USDT TRC-20 */}
+          <div className="p-4 rounded-2xl bg-muted/30 border border-border/60 space-y-3">
+            <h4 className="font-bold text-xs text-purple-400">USDT (TRC-20) Address</h4>
+            <div>
+              <label className="block font-semibold mb-1">Wallet Address</label>
+              <input
+                type="text"
+                name="usdt_address"
+                defaultValue={settings.payments.usdt_address}
+                className="w-full px-3 py-2 rounded-xl bg-background border border-border font-mono text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end pt-2">
+            <button
+              type="submit"
+              className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-all shadow-glow"
+            >
+              Save Payment Accounts
             </button>
           </div>
         </form>

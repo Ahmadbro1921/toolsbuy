@@ -11,6 +11,9 @@ import {
   History,
   ArrowLeft,
   Sparkles,
+  CreditCard,
+  Layers,
+  MessageSquare,
 } from "lucide-react";
 
 export default async function AdminLayout({
@@ -57,10 +60,31 @@ export default async function AdminLayout({
               <span>Admin Overview</span>
             </Link>
             <Link
+              href="/admin/orders"
+              className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            >
+              <CreditCard className="w-4 h-4 text-emerald-400" />
+              <span>Orders & Payments</span>
+            </Link>
+            <Link
+              href="/admin/packages"
+              className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            >
+              <Layers className="w-4 h-4 text-primary" />
+              <span>Packages & Bundles</span>
+            </Link>
+            <Link
+              href="/admin/tickets"
+              className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            >
+              <MessageSquare className="w-4 h-4 text-sky-400" />
+              <span>Support Tickets</span>
+            </Link>
+            <Link
               href="/admin/tools"
               className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
             >
-              <Wrench className="w-4 h-4 text-primary" />
+              <Wrench className="w-4 h-4 text-purple-400" />
               <span>Tool Management</span>
             </Link>
             <Link
